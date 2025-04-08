@@ -1,0 +1,50 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class MyHashSet {
+public:
+    vector<int> hash_table; //se crea un vector de enteros
+    MyHashSet() {
+        
+    }
+    
+    void add(int key) {
+        bool existe = false; //crea una variable bool para luego saber si el valor está o no en la lista 
+        for ( int i=0; i<hash_table.size(); i++ ){
+            if ( hash_table[i] == key ){ //compara el valor que se quiere ingresar en la lista hash con los ya existentes en la lista hash 
+                existe = true; // si sí es igual, estonces a "existe" se le asigna true
+            }
+        }
+
+        if ( !existe ){ // si "existe" es falso, entocnes agregará el valor a la lista hash
+            hash_table.push_back(key);
+        }        
+    }
+    
+    void remove(int key) {
+        for ( int i=0; i<hash_table.size(); i++ ){
+            if ( hash_table[i] == key ){//compara el valor que se quiere ingresar en la lista hash con los ya existentes en la lista hash 
+                hash_table.erase(hash_table.begin()+i);// si sí es sigual, elimina el valor de la lista hash
+            }
+        }
+    }
+    
+    bool contains(int key) {
+        for ( int i=0; i<hash_table.size(); i++ ){
+            if ( hash_table[i] == key ){//compara el valor que se quiere ingresar en la lista hash con los ya existentes en la lista hash 
+                return true;// si sí es sigual, la funcion retorna true
+            }
+        }
+        return false;
+
+    }
+};
+
+/**
+ * Your MyHashSet object will be instantiated and called as such:
+ * MyHashSet* obj = new MyHashSet();
+ * obj->add(key);
+ * obj->remove(key);
+ * bool param_3 = obj->contains(key);
+ */
